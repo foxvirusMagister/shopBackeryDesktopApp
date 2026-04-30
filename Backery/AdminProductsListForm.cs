@@ -7,28 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Backery
 {
-    public partial class SelectProductUserForm : Form
+    public partial class AdminProductsListForm : Form
     {
-        SelectProductCategoryUserForm parent;
-        CategoryCard category_card;
-        public SelectProductUserForm(SelectProductCategoryUserForm parent, CategoryCard category_card)
+        AdminProductCategoriesForm parent;
+        public AdminCategoryCard category_card;
+        public AdminProductsListForm(AdminProductCategoriesForm parent, AdminCategoryCard category_card)
         {
             InitializeComponent();
             this.parent = parent;
             this.category_card = category_card;
         }
 
-        private void SelectProductUserForm_Load(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
-            BackButton.Size = new(Convert.ToInt32(Size.Width * 0.1), Convert.ToInt32(Size.Height * 0.1));
+            AdminProductDetails detailsForm = new(this, "add", null, null);
+            detailsForm.ShowDialog();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            parent.Show();
+        }
+
+        private void CatsCount_SelectedIndexChanged(object sender, EventArgs e)
+        {
             InsertInPanel();
         }
 
         public async void InsertInPanel()
         {
+            
             ProductPanel.Controls.Clear();
             int page = Convert.ToInt32(PageSelector.Value);
             int limit = int.Parse(CatsCount.Text);
@@ -38,38 +51,14 @@ namespace Backery
             ProductPanel.RowCount = Convert.ToInt32(products.Count / 4) + 1;
             foreach (ProductClass product in products)
             {
-                ProductCardUser card = new(product, this, await ApiClient.GetProductImageAsync(product), parent);
+                AdminProductCard card = new(product, this, await ApiClient.GetProductImageAsync(product), parent, categoryCard: category_card);
                 ProductPanel.Controls.Add(card);
             }
         }
 
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            parent.Show();
-            Close();
-        }
-
-        private void CatsCount_SelectedIndexChanged(object sender, EventArgs e)
+        private void AdminProductsListForm_Load(object sender, EventArgs e)
         {
             InsertInPanel();
-        }
-
-        private void PageSelector_ValueChanged(object sender, EventArgs e)
-        {
-            InsertInPanel();
-        }
-
-        private void CartButton_Click(object sender, EventArgs e)
-        {
-            CartForm cart = new(parent, this);
-            Hide();
-            cart.Show();
-        }
-
-        public void Terminate()
-        {
-            parent.Terminate();
-            Close();
         }
     }
 }

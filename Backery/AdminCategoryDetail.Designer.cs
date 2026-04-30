@@ -45,6 +45,7 @@
             OkButton.TabIndex = 1;
             OkButton.Text = "Принять\\Создать";
             OkButton.UseVisualStyleBackColor = false;
+            OkButton.Click += OkButton_Click;
             // 
             // CancelButton
             // 

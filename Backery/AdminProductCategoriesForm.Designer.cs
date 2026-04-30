@@ -92,6 +92,7 @@
             AddButton.TabIndex = 9;
             AddButton.Text = "Добавить";
             AddButton.UseVisualStyleBackColor = false;
+            AddButton.Click += AddButton_Click;
             // 
             // CatsCount
             // 

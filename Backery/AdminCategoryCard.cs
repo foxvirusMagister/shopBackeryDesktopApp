@@ -15,12 +15,16 @@ namespace Backery
         AdminProductCategoriesForm parent;
         MainMenu root;
         CategoryClass categoryClass;
+        public string categoryName = "";
+        public int id;
         public AdminCategoryCard(AdminProductCategoriesForm parent, MainMenu root, CategoryClass categoryClass)
         {
             InitializeComponent();
             this.parent = parent;
             this.root = root;
             this.categoryClass = categoryClass;
+            id = (int)categoryClass.id;
+            categoryName = categoryClass.name;
         }
 
         private void AdminCategoryCard_Load(object sender, EventArgs e)
@@ -30,27 +34,22 @@ namespace Backery
 
         private void AdminCategoryCard_Click(object sender, EventArgs e)
         {
-
+            AdminProductsListForm productsForm = new(parent, this);
+            parent.Hide();
+            productsForm.Show();
         }
 
-        void CreateDetails(string? mode=null)
-        {
-            if (mode != null)
-            {
-                AdminCategoryDetail categoryDetail = new(categoryClass, this, parent, mode);
-                categoryDetail.ShowDialog();
-            }
-            else
-            {
-                AdminCategoryDetail categoryDetail = new(categoryClass, this, parent);
-                categoryDetail.ShowDialog();
-            }
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateDetails();
+            AdminCategoryDetail categoryDetail = new(parent, creator: this, categoryClass: categoryClass);
+            categoryDetail.ShowDialog();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            AskForDelete deleteDialog = new(categoryClass, parent);
+            deleteDialog.ShowDialog();
         }
     }
 }

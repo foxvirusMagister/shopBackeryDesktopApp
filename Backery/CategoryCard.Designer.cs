@@ -29,19 +29,32 @@
         private void InitializeComponent()
         {
             CategoryName = new Label();
+            CategoryImage = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)CategoryImage).BeginInit();
             SuspendLayout();
             // 
             // CategoryName
             // 
             CategoryName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CategoryName.Font = new Font("Segoe UI", 22F);
-            CategoryName.Location = new Point(-1, 0);
+            CategoryName.Location = new Point(-1, 188);
             CategoryName.Name = "CategoryName";
-            CategoryName.Size = new Size(394, 216);
+            CategoryName.Size = new Size(394, 56);
             CategoryName.TabIndex = 0;
             CategoryName.Text = "ИмяИМЯИмя";
             CategoryName.TextAlign = ContentAlignment.MiddleCenter;
             CategoryName.Click += CategoryCard_Click;
+            // 
+            // CategoryImage
+            // 
+            CategoryImage.Image = Properties.Resources.iconApp;
+            CategoryImage.Location = new Point(0, 0);
+            CategoryImage.Name = "CategoryImage";
+            CategoryImage.Size = new Size(393, 185);
+            CategoryImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            CategoryImage.TabIndex = 1;
+            CategoryImage.TabStop = false;
+            CategoryImage.Click += CategoryCard_Click;
             // 
             // CategoryCard
             // 
@@ -49,16 +62,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Wheat;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(CategoryImage);
             Controls.Add(CategoryName);
             Name = "CategoryCard";
-            Size = new Size(392, 216);
+            Size = new Size(392, 244);
             Load += CategoryCard_Load;
             Click += CategoryCard_Click;
+            ((System.ComponentModel.ISupportInitialize)CategoryImage).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Label CategoryName;
+        private PictureBox CategoryImage;
     }
 }

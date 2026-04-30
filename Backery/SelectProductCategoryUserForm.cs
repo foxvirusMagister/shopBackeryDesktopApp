@@ -27,7 +27,6 @@ namespace Backery
         private void SelectProductCategoryUserForm_Load(object sender, EventArgs e)
         {
             BackButton.Size = new(Convert.ToInt32(Size.Width * 0.1), Convert.ToInt32(Size.Height * 0.1));
-            CategoryPanel.Size = new(Convert.ToInt32(Size.Width * 0.95), Convert.ToInt32(Size.Height * 0.6));
             InsertInPanel();
         }
 

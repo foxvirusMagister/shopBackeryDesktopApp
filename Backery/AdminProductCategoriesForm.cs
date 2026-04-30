@@ -49,5 +49,11 @@ namespace Backery
                 CategoryPanel.Controls.Add(card);
             }
         }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            AdminCategoryDetail categoryDetail = new(this, "create");
+            categoryDetail.ShowDialog();
+        }
     }
 }

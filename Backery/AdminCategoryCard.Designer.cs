@@ -43,6 +43,7 @@
             CategoryName.TabIndex = 1;
             CategoryName.Text = "ИмяИМЯИмя";
             CategoryName.TextAlign = ContentAlignment.MiddleCenter;
+            CategoryName.Click += AdminCategoryCard_Click;
             // 
             // DeleteButton
             // 
@@ -57,6 +58,7 @@
             DeleteButton.TabIndex = 2;
             DeleteButton.Text = "Удалить";
             DeleteButton.UseVisualStyleBackColor = false;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // button1
             // 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -58,7 +59,6 @@ namespace Backery
             }
             else
             {
-                MessageBox.Show("Подтягиваем с интеренета");
                 HttpResponseMessage response = await _httpClient.GetAsync(string.Format("http://185.196.41.109:9000/products/link/{0}", ProductId));
                 string imgLink = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -106,5 +106,164 @@ namespace Backery
 
             }
         }
+
+        public static async Task<CategoryClass> PutCategoryAsync(CategoryClass category)
+        {
+            var message = new HttpRequestMessage(HttpMethod.Put, string.Format("http://185.196.41.109:9000/categories/{0}", category.id));
+            FileInfo file = new("token");
+            
+            using (StreamReader stream = file.OpenText())
+            {
+                var body = JsonSerializer.Serialize(category);
+                var token = stream.ReadLine();
+                message.Headers.Add("Authorization", "Bearer " + token);
+                message.Content = new StringContent(body, Encoding.UTF8, "application/json");
+                var response = await _httpClient.SendAsync(message);
+                response.EnsureSuccessStatusCode();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                CategoryClass result = JsonSerializer.Deserialize<CategoryClass>(jsonResponse);
+                return result;
+            }
+        }
+
+        public static async Task<CategoryClass> PostCategoryAsync(CategoryClass category)
+        {
+            var message = new HttpRequestMessage(HttpMethod.Post, "http://185.196.41.109:9000/categories");
+            FileInfo file = new("token");
+
+            using (StreamReader stream = file.OpenText())
+            {
+                var body = JsonSerializer.Serialize(category);
+                var token = stream.ReadLine();
+                message.Headers.Add("Authorization", "Bearer " + token);
+                message.Content = new StringContent(body, Encoding.UTF8, "application/json");
+                var response = await _httpClient.SendAsync(message);
+                response.EnsureSuccessStatusCode();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                CategoryClass result = JsonSerializer.Deserialize<CategoryClass>(jsonResponse);
+                return result;
+            }
+        }
+
+        public static async Task<int> DeleteCategoryAsync(CategoryClass category)
+        {
+            var message = new HttpRequestMessage(HttpMethod.Delete, string.Format("http://185.196.41.109:9000/categories/{0}", category.id));
+            FileInfo file = new("token");
+
+            using (StreamReader stream = file.OpenText())
+            {
+                var token = stream.ReadLine();
+                message.Headers.Add("Authorization", "Bearer " + token);
+                var response = await _httpClient.SendAsync(message);
+                response.EnsureSuccessStatusCode();
+                string responseValue = await response.Content.ReadAsStringAsync();
+                return Convert.ToInt32(responseValue);
+            }
+        }
+
+        public static async Task<int> DeleteProductAsync(ProductClass product)
+        {
+            var message = new HttpRequestMessage(HttpMethod.Delete, string.Format("http://185.196.41.109:9000/products/{0}", product.id));
+            FileInfo file = new("token");
+
+            using (StreamReader stream = file.OpenText())
+            {
+                var token = stream.ReadLine();
+                message.Headers.Add("Authorization", "Bearer " + token);
+                var response = await _httpClient.SendAsync(message);
+                response.EnsureSuccessStatusCode();
+                string responseValue = await response.Content.ReadAsStringAsync();
+                return Convert.ToInt32(responseValue);
+            }
+        }
+
+        public static async Task<int> PutImageAsync(string imgpath, string key)
+        {
+            var getlink = new HttpRequestMessage(HttpMethod.Get, string.Format("http://185.196.41.109:9000/products/link/post/{0}", key));
+            FileInfo tokenfile = new("token");
+            using (StreamReader stream = tokenfile.OpenText())
+            {
+                var token = stream.ReadLine();
+                getlink.Headers.Add("Authorization", "Bearer " + token);
+            }
+            var response = await _httpClient.SendAsync(getlink);
+            string imgLink = await response.Content.ReadAsStringAsync();
+            response.EnsureSuccessStatusCode();
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                int linkLength = imgLink.Length;
+                imgLink = imgLink.Substring(1, linkLength - 2);
+                var message = new HttpRequestMessage(HttpMethod.Put, imgLink);
+                FileInfo file = new("token");
+                string token;
+                using (StreamReader stream = file.OpenText())
+                {
+                    token = stream.ReadLine();
+                }
+                byte[] baContent = File.ReadAllBytes(imgpath);
+                message.Content = new ByteArrayContent(baContent);
+                message.Headers.Add("Authorization", "Bearer " + token);
+                var Imageresponse = await _httpClient.SendAsync(message);
+                Imageresponse.EnsureSuccessStatusCode();
+                return 0;
+            }
+            return 1;
+        }
+
+        public static async Task<int> PutProductAsync(ProductClass product)
+        {
+            var message = new HttpRequestMessage(HttpMethod.Put, string.Format("http://185.196.41.109:9000/products/{0}", product.id));
+            FileInfo file = new("token");
+
+            using (StreamReader stream = file.OpenText())
+            {
+                var body = JsonSerializer.Serialize(product);
+                var token = stream.ReadLine();
+                message.Headers.Add("Authorization", "Bearer " + token);
+                message.Content = new StringContent(body, Encoding.UTF8, "application/json");
+                var response = await _httpClient.SendAsync(message);
+                response.EnsureSuccessStatusCode();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                CategoryClass result = JsonSerializer.Deserialize<CategoryClass>(jsonResponse);
+                if (result.name != string.Empty)
+                {
+                    return 0;
+                }
+                return 1;
+            }
+        }
+
+        public static async Task<int> PostProductAsync(ProductClass product)
+        {
+            var message = new HttpRequestMessage(HttpMethod.Post, "http://185.196.41.109:9000/products");
+            FileInfo file = new("token");
+
+            using (StreamReader stream = file.OpenText())
+            {
+                var body = JsonSerializer.Serialize(product);
+                var token = stream.ReadLine();
+                message.Headers.Add("Authorization", "Bearer " + token);
+                message.Content = new StringContent(body, Encoding.UTF8, "application/json");
+                var response = await _httpClient.SendAsync(message);
+                try
+                {
+                    response.EnsureSuccessStatusCode();
+                }
+                catch (HttpRequestException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    throw ex;
+                }
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                CategoryClass result = JsonSerializer.Deserialize<CategoryClass>(jsonResponse);
+                if (result.name != string.Empty)
+                {
+                    return 0;
+                }
+                return 1;
+            }
+        }
+
+
     }
 }

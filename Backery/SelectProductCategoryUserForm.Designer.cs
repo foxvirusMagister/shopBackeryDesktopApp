@@ -63,7 +63,7 @@
             // 
             // CategoryPanel
             // 
-            CategoryPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            CategoryPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CategoryPanel.AutoScroll = true;
             CategoryPanel.BackColor = Color.DarkGoldenrod;
             CategoryPanel.ColumnCount = 3;

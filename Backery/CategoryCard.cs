@@ -19,13 +19,16 @@ namespace Backery
         {
             InitializeComponent();
             categoryName = cat.name;
-            id = cat.id;
+            id = (int)cat.id;
             this.parent = parent;
         }
 
-        private void CategoryCard_Load(object sender, EventArgs e)
+        private async void CategoryCard_Load(object sender, EventArgs e)
         {
             CategoryName.Text = categoryName;
+            List<ProductClass> productClass = await ApiClient.GetProductsAsync(string.Format("http://185.196.41.109:9000/products?limit=1&page=1&filter=category_id eq {0}", id));
+            Image productImg = await ApiClient.GetProductImageAsync(productClass[0]);
+            CategoryImage.Image = productImg;
         }
 
         private void CategoryCard_Click(object sender, EventArgs e)

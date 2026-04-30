@@ -7,7 +7,22 @@
     <Compile Update="AdminCategoryDetail.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="AdminDeleteProductDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AdminProductCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="AdminProductCategoriesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AdminProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AdminProductsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AskForDelete.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="CartForm.cs">
