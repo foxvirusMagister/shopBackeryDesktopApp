@@ -32,7 +32,7 @@ namespace Backery
             int response = await ApiClient.DeleteCategoryAsync(category);
             if (response == category.id)
             {
-                MessageBox.Show("Успех!");
+                DialogsClass.MessageDialog("Успех!");
                 Close();
                 categories.InsertInPanel();
             }

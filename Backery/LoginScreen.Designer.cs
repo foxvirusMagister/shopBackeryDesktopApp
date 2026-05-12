@@ -60,7 +60,9 @@
             UsernameField.Name = "UsernameField";
             UsernameField.Size = new Size(416, 64);
             UsernameField.TabIndex = 7;
+            UsernameField.Text = "Логин";
             UsernameField.TextAlign = HorizontalAlignment.Center;
+            UsernameField.Click += ClearField;
             // 
             // PasswordField
             // 
@@ -71,10 +73,11 @@
             PasswordField.ForeColor = Color.LightGoldenrodYellow;
             PasswordField.Location = new Point(192, 242);
             PasswordField.Name = "PasswordField";
-            PasswordField.PasswordChar = '*';
             PasswordField.Size = new Size(416, 64);
             PasswordField.TabIndex = 8;
+            PasswordField.Text = "Пароль";
             PasswordField.TextAlign = HorizontalAlignment.Center;
+            PasswordField.Click += ClearField;
             // 
             // EnterButton
             // 

@@ -37,9 +37,9 @@
             // 
             CategoryName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CategoryName.Font = new Font("Segoe UI", 22F);
-            CategoryName.Location = new Point(-1, 188);
+            CategoryName.Location = new Point(-1, 229);
             CategoryName.Name = "CategoryName";
-            CategoryName.Size = new Size(394, 56);
+            CategoryName.Size = new Size(346, 45);
             CategoryName.TabIndex = 0;
             CategoryName.Text = "ИмяИМЯИмя";
             CategoryName.TextAlign = ContentAlignment.MiddleCenter;
@@ -50,7 +50,7 @@
             CategoryImage.Image = Properties.Resources.iconApp;
             CategoryImage.Location = new Point(0, 0);
             CategoryImage.Name = "CategoryImage";
-            CategoryImage.Size = new Size(393, 185);
+            CategoryImage.Size = new Size(345, 226);
             CategoryImage.SizeMode = PictureBoxSizeMode.StretchImage;
             CategoryImage.TabIndex = 1;
             CategoryImage.TabStop = false;
@@ -65,7 +65,7 @@
             Controls.Add(CategoryImage);
             Controls.Add(CategoryName);
             Name = "CategoryCard";
-            Size = new Size(392, 244);
+            Size = new Size(344, 273);
             Load += CategoryCard_Load;
             Click += CategoryCard_Click;
             ((System.ComponentModel.ISupportInitialize)CategoryImage).EndInit();

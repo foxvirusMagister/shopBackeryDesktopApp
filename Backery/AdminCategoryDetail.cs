@@ -60,7 +60,7 @@ namespace Backery
                         var response = await ApiClient.PutCategoryAsync(categoryClass);
                         if (response.name != string.Empty)
                         {
-                            MessageBox.Show("Успех");
+                            DialogsClass.MessageDialog("Успех");
                             parent.InsertInPanel();
                             Close();
                         }
@@ -70,14 +70,17 @@ namespace Backery
             }
             else if (mode == "create")
             {
-                categoryClass = new();
+                if (CategoryNameField.Text == "Название" || CategoryNameField.Text == "") DialogsClass.MessageDialog("Поле название пустое!\r\nВведите название категории!");
+                else
+                    {categoryClass = new();
                 categoryClass.name = CategoryNameField.Text;
                 var response = await ApiClient.PostCategoryAsync(categoryClass);
-                if (response.name != string.Empty)
-                {
-                    MessageBox.Show("Успех");
-                    parent.InsertInPanel();
-                    Close();
+                    if (response.name != string.Empty)
+                    {
+                        DialogsClass.MessageDialog("Успех");
+                        parent.InsertInPanel();
+                        Close();
+                    }
                 }
             }
         }

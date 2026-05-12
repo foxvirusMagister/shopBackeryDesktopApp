@@ -35,13 +35,13 @@ namespace Backery
             checkText = "";
             checkText += string.Format("Номер чека {0}\r\n \r\n", DateTime.UtcNow.Ticks.ToString());
             checkText += string.Format("Всего продуктов в корзине {0}\r\n", root.productsInCheck.Count.ToString());
-            checkText += string.Format("Итоговая цена: {0}\r\n \r\n", totalPrice.ToString());
+            checkText += string.Format("Итоговая цена: {0} руб.\r\n \r\n", totalPrice.ToString());
             foreach (ProductInCheck product in root.productsInCheck)
             {
                 checkText += string.Format("Название продукта: {0}\r\n", product.name);
-                checkText += string.Format("Цена продукта: {0}\r\n", product.price.ToString());
+                checkText += string.Format("Цена продукта: {0} руб.\r\n", product.price.ToString());
                 checkText += string.Format("Количество таких продуктов: {0}\r\n", product.amount.ToString());
-                checkText += string.Format("Цена продукта учитывая количество: {0}\r\n", (product.price * product.amount).ToString());
+                checkText += string.Format("Цена продукта учитывая количество: {0} руб.\r\n", (product.price * product.amount).ToString());
                 checkText += string.Format("Категория продукта: {0}\r\n \r\n", product.category);
             }
             checkText += "СПАСИБО ЗА ПОКУПКУ";
@@ -61,7 +61,7 @@ namespace Backery
                 {
                     stream.WriteLine(checkText);
                 }
-                MessageBox.Show("Успех");
+                DialogsClass.MessageDialog("Успех!\r\nЧек был сохранен!");
                 ExitFrom();
             }
         }

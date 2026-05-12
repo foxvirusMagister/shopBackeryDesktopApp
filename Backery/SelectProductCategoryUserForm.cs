@@ -37,7 +37,7 @@ namespace Backery
             int limit = int.Parse(CatsCount.Text);
 
             List<CategoryClass> categories = await ApiClient.GetCategoriesAsync(string.Format("http://185.196.41.109:9000/categories/used?limit={0}&page={1}", limit, page));
-            CategoryPanel.RowCount = Convert.ToInt32(categories.Count / 3) + 1;
+            CategoryPanel.RowCount = Convert.ToInt32(categories.Count / 4) + 1;
             foreach (CategoryClass category in categories)
             {
                 CategoryCard card = new(category, this);

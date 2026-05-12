@@ -32,7 +32,7 @@ namespace Backery
 
         private void ChoicePaymentForm_Load(object sender, EventArgs e)
         {
-            TotalPrice.Text = totalPrice.ToString();
+            TotalPrice.Text = totalPrice.ToString() + " Руб.";
         }
 
         private void ChoicePaymentForm_FormClosed(object sender, FormClosedEventArgs e)

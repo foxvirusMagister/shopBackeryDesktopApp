@@ -66,10 +66,11 @@
             CategoryPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CategoryPanel.AutoScroll = true;
             CategoryPanel.BackColor = Color.DarkGoldenrod;
-            CategoryPanel.ColumnCount = 3;
-            CategoryPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            CategoryPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            CategoryPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            CategoryPanel.ColumnCount = 4;
+            CategoryPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            CategoryPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            CategoryPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            CategoryPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             CategoryPanel.Location = new Point(21, 121);
             CategoryPanel.Name = "CategoryPanel";
             CategoryPanel.RowCount = 2;

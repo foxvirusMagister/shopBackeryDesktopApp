@@ -251,7 +251,7 @@ namespace Backery
                 }
                 catch (HttpRequestException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    DialogsClass.MessageDialog(ex.Message);
                     throw ex;
                 }
                 string jsonResponse = await response.Content.ReadAsStringAsync();

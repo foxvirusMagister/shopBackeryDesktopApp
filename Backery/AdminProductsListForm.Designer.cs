@@ -49,6 +49,7 @@
             PageSelector.Size = new Size(71, 50);
             PageSelector.TabIndex = 17;
             PageSelector.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            PageSelector.ValueChanged += AdminProductsListForm_Load;
             // 
             // CatsCount
             // 

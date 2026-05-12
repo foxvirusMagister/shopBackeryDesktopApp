@@ -52,7 +52,7 @@ namespace Backery
                 var result = await ApiClient.DeleteProductAsync(product_info);
                 if (result == product_info.id)
                 {
-                    MessageBox.Show("Успех!");
+                    DialogsClass.MessageDialog("Успех!");
                     current_form.InsertInPanel();
                 }
             }

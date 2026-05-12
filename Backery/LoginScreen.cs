@@ -26,6 +26,16 @@ namespace Backery
             Terminate();
         }
 
+        private void ClearField(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text == "Пароль" || textBox.Text == "Логин")
+            {
+                if (textBox.Text == "Пароль") textBox.PasswordChar = '*';
+                textBox.Clear();
+            }
+        }
+
         private async void EnterButton_Click(object sender, EventArgs e)
         {
             FileInfo fileToken = new("token");
@@ -44,7 +54,7 @@ namespace Backery
                 }
                 else
                 {
-                    MessageBox.Show("Неверные данные!");
+                    DialogsClass.MessageDialog("Неверные данные!");
                 }
             }
             else

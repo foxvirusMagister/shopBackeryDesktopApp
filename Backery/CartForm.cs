@@ -36,7 +36,7 @@ namespace Backery
                 totalPrice += product.price * product.amount;
             }
             totalPrice = Math.Round(totalPrice, 2);
-            TotalPriceLabel.Text = "Цена: " + totalPrice.ToString();
+            TotalPriceLabel.Text = "Цена: " + totalPrice.ToString() + " Руб.";
         }
 
         private void CartForm_Load(object sender, EventArgs e)
@@ -53,9 +53,16 @@ namespace Backery
 
         private void BuyButton_Click(object sender, EventArgs e)
         {
-            ChoicePaymentForm choicePaymentForm = new(root, this, totalPrice);
-            Hide();
-            choicePaymentForm.Show();
+            if (ProductsPanel.Controls.Count == 0)
+            {
+                DialogsClass.MessageDialog("В корзине нет товаров!\r\nПожалуйста, добавьте товары в корзину!");
+            }
+            else
+            {
+                ChoicePaymentForm choicePaymentForm = new(root, this, totalPrice);
+                Hide();
+                choicePaymentForm.Show();
+            }
         }
 
         private void CartForm_FormClosed(object sender, FormClosedEventArgs e)

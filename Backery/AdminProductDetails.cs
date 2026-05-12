@@ -129,12 +129,12 @@ namespace Backery
                 }
                 else
                 {
-                    MessageBox.Show("Стоимость не является числом!");
+                    DialogsClass.MessageDialog("Стоимость не является числом!\r\nВведите корректные данные!");
                     willcreate = false;
                 }
                 if (NameField.Text == "Название" || NameField.Text == "") // Проверка что пользователь ввел название
                 {
-                    MessageBox.Show("Название отсутствует!");
+                    DialogsClass.MessageDialog("Название отсутствует!\r\nПоле с названием должно быть заполнено!");
                     willcreate = false;
                 }
                 else
@@ -148,7 +148,7 @@ namespace Backery
                 else productInfo.content = DetailField.Text;
                 if (CategoryField.Text == "")
                 {
-                    MessageBox.Show("Категория не выбрана!");
+                    DialogsClass.MessageDialog("Категория не выбрана!\r\nПоле категории должно быть заполнено!");
                     willcreate = false;
                 }
                 else productInfo.category_id = FindIdCategoryWithName(categories, CategoryField.Text);
@@ -163,10 +163,10 @@ namespace Backery
                             var puttingImage = await ApiClient.PutImageAsync(PictureImageDialog.FileName, PictureImageDialog.SafeFileName.Substring(0, PictureImageDialog.SafeFileName.Length - 5));
                             if (puttingImage == 0)
                             {
-                                MessageBox.Show("Успех!");
+                                DialogsClass.MessageDialog("Успех!");
                             }
                         }
-                        else MessageBox.Show("Успех");
+                        else DialogsClass.MessageDialog("Успех");
                         productsList.InsertInPanel();
                         Close();
                     }
@@ -184,12 +184,12 @@ namespace Backery
                 }
                 else
                 {
-                    MessageBox.Show("Стоимость не является числом!");
+                    DialogsClass.MessageDialog("Стоимость не является числом!");
                     willcreate = false;
                 }
                 if (NameField.Text == "Название" || NameField.Text == "") // Проверка что пользователь ввел название
                 {
-                    MessageBox.Show("Название отсутствует!");
+                    DialogsClass.MessageDialog("Название отсутствует!");
                     willcreate = false;
                 }
                 else
@@ -211,7 +211,7 @@ namespace Backery
                 }
                 if (CategoryField.Text == "")
                 {
-                    MessageBox.Show("Категория не выбрана!");
+                    DialogsClass.MessageDialog("Категория не выбрана!");
                     willcreate = false;
                 }
                 else productInfo.category_id = FindIdCategoryWithName(categories, CategoryField.Text);
@@ -223,7 +223,7 @@ namespace Backery
                         if (puttingProduct == 0)
                         {
                             var puttingImage = await ApiClient.PutImageAsync(PictureImageDialog.FileName, PictureImageDialog.SafeFileName.Substring(0, PictureImageDialog.SafeFileName.Length - 5));
-                            MessageBox.Show("Успех!");
+                            DialogsClass.MessageDialog("Успех!");
                             productsList.InsertInPanel();
                             Close();
                         }
@@ -232,7 +232,7 @@ namespace Backery
                     {
                         if (puttingProduct == 0)
                         {
-                            MessageBox.Show("Успех!");
+                            DialogsClass.MessageDialog("Успех!");
                             productsList.InsertInPanel();
                             Close();
                         }
